@@ -1,0 +1,12 @@
+<div class="jumbotron">
+  <h2><%= gettext "Ninja Clicker" %></h2>
+  <p class="lead">Possibly the best clicker app ever</p>
+
+  <hr>
+
+  <p>
+    We're working hard on bringing this app to you soon.
+    <br>
+    Watch this space!
+  </p>
+</div>
