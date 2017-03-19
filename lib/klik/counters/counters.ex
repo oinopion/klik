@@ -74,27 +74,22 @@ defmodule Klik.Counters do
   end
 
   def increment_counter(%Counter{} = counter, attrs \\ %{}) do
-    changeset =
-      %Increment{}
-      |> increment_changeset(attrs)
-      |> put_assoc(:counter, counter)
-    increment_value = get_change(changeset, :value, 1)
-    counters_update = from(
-      c in Counter,
-      where: c.id == ^counter.id,
-      update: [inc: [value: ^increment_value]])
+    increment_cs = new_increment_changeset(counter, attrs)
+    increment_by = get_change(increment_cs, :value, 1)
+    update_query = increment_counter_value_query(counter, increment_by)
 
     result =
       Multi.new
-      |> Multi.insert(:increment, changeset)
-      |> Multi.update_all(:counters, counters_update, [], returning: true)
+      |> Multi.insert(:increment, increment_cs)
+      |> Multi.update_all(:counters, update_query, [], returning: true)
       |> Repo.transaction()
 
     case result do
+      # We know there's going to be only one counter
       {:ok, %{increment: increment, counters: {1, [counter]}}} ->
         {:ok, counter, increment}
-      {:error, error} ->
-        {:error, error}
+      default ->
+        default
     end
   end
 
@@ -111,13 +106,21 @@ defmodule Klik.Counters do
     counter_changeset(counter, %{})
   end
 
+  defp increment_counter_value_query(counter, increment_by) do
+    from(
+      c in Counter,
+      where: c.id == ^counter.id,
+      update: [inc: [value: ^increment_by]])
+  end
+
   defp counter_changeset(%Counter{} = counter, attrs) do
     counter
     |> cast(attrs, [:name])
   end
 
-  defp increment_changeset(%Increment{} = increment, attrs) do
-    increment
+  defp new_increment_changeset(counter, attrs) do
+    %Increment{}
     |> cast(attrs, [:value])
+    |> put_assoc(:counter, counter)
   end
 end
