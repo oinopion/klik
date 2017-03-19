@@ -4,9 +4,9 @@ defmodule Klik.Counters do
   """
 
   import Ecto.{Query, Changeset}, warn: false
+  alias Ecto.Multi
   alias Klik.Repo
-
-  alias Klik.Counters.Counter
+  alias Klik.Counters.{Counter,Increment}
 
   @doc """
   Returns the list of counters.
@@ -73,6 +73,31 @@ defmodule Klik.Counters do
     |> Repo.update()
   end
 
+  def increment_counter(%Counter{} = counter, attrs \\ %{}) do
+    changeset =
+      %Increment{}
+      |> increment_changeset(attrs)
+      |> put_assoc(:counter, counter)
+    increment_value = get_change(changeset, :value, 1)
+    counters_update = from(
+      c in Counter,
+      where: c.id == ^counter.id,
+      update: [inc: [value: ^increment_value]])
+
+    result =
+      Multi.new
+      |> Multi.insert(:increment, changeset)
+      |> Multi.update_all(:counters, counters_update, [], returning: true)
+      |> Repo.transaction()
+
+    case result do
+      {:ok, %{increment: increment, counters: {1, [counter]}}} ->
+        {:ok, counter, increment}
+      {:error, error} ->
+        {:error, error}
+    end
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking counter changes.
 
@@ -89,5 +114,10 @@ defmodule Klik.Counters do
   defp counter_changeset(%Counter{} = counter, attrs) do
     counter
     |> cast(attrs, [:name])
+  end
+
+  defp increment_changeset(%Increment{} = increment, attrs) do
+    increment
+    |> cast(attrs, [:value])
   end
 end

@@ -2,7 +2,7 @@ defmodule Klik.Repo.Migrations.CreateKlik.Counters.Increment do
   use Ecto.Migration
 
   def change do
-    create table(:increments, primary_key: false) do
+    create table(:counters_increments, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :value, :integer, default: 1, null: false
       add :counter_id,
@@ -12,6 +12,6 @@ defmodule Klik.Repo.Migrations.CreateKlik.Counters.Increment do
       timestamps()
     end
 
-    create index(:increments, [:counter_id])
+    create index(:counters_increments, [:counter_id])
   end
 end

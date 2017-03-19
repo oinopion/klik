@@ -1,9 +1,10 @@
 defmodule Klik.Counters.Increment do
   use Klik.Schema
+  alias Klik.Counters.Counter
 
   schema "counters_increments" do
     field :value, :integer, default: 1
-    field :counter_id, :binary_id
+    belongs_to :counter, Counter
 
     timestamps()
   end
