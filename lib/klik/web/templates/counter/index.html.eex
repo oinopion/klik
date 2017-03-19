@@ -1,0 +1,25 @@
+<h2>Listing Counters</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for counter <- @counters do %>
+    <tr>
+      <td><%= counter.name %></td>
+      <td><%= counter.value %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: counter_path(@conn, :show, counter), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: counter_path(@conn, :edit, counter), class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

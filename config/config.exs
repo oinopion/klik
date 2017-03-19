@@ -16,6 +16,11 @@ config :klik, Klik.Web.Endpoint,
   render_errors: [view: Klik.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Klik.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# Generated schemas will use UUID
+config :klik, :generators,
+  binary_id: true,
+  sample_binary_id: "11111111-1111-1111-1111-111111111111"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
