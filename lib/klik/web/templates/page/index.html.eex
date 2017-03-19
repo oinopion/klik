@@ -5,11 +5,10 @@
   <hr>
 
   <p>
-    <%= form_for @conn, counter_path(@conn, :create), [as: :counter], fn f -> %>
-    <div class="form-group">
-      <%= submit "Start clicking now!", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-
+    <%= form_for @conn, counter_path(@conn, :create), [as: :counter], fn _ -> %>
+      <div class="form-group">
+        <%= submit "Start clicking now!", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </p>
 </div>
