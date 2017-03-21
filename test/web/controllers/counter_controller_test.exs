@@ -23,7 +23,7 @@ defmodule Klik.Web.CounterControllerTest do
     assert redirected_to(conn) == counter_path(conn, :show, id)
 
     conn = get conn, counter_path(conn, :show, id)
-    assert html_response(conn, 200) =~ "Show Counter"
+    assert html_response(conn, 200) =~ "Counter"
   end
 
   test "renders form for editing chosen counter", %{conn: conn} do

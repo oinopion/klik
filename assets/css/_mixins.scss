@@ -1,0 +1,18 @@
+@mixin round-button($width) {
+    display: inline-block;
+    border: none;
+    border-radius: $width * 2;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    width: $width;
+    line-height: $width;
+    height: $width;
+    padding: 0;
+    text-shadow: none;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover, &:active, &:focus {
+        transition-property: background;
+        transition-duration: .3s;
+    }
+}
