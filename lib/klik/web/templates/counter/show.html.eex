@@ -1,0 +1,14 @@
+<section class="counter">
+  <h2 class="counter__name"><%= counter_name(@counter) %></h2>
+  <span class="counter__value"><%= number_with_leading_zeros(@counter.value) %></span>
+
+  <%= form_for @conn, counter_increment_path(@conn, :create, @counter), [as: :increment], fn _ -> %>
+    <%= submit "+", class: "counter__button" %>
+  <% end %>
+
+  <div class="counter__actions">
+    <%= link "Edit",
+          to: counter_path(@conn, :edit, @counter),
+          class: "btn btn--round" %>
+  </div>
+</section>

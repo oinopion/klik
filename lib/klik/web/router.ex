@@ -17,6 +17,9 @@ defmodule Klik.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/counters", CounterController, except: [:index, :new, :delete] do
+      resources "/increments", IncrementController, only: [:create]
+    end
   end
 
   # Other scopes may use custom stacks.

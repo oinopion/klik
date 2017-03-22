@@ -1,11 +1,30 @@
-@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'normalize.scss/normalize';
+@import '_variables';
+@import '_mixins';
+@import '_typography';
+@import '_forms';
+@import 'common/_buttons';
 
-body, form, ul, table {
-  margin-top: 20px;
-  margin-bottom: 20px;
+@import 'sections/_home';
+@import 'sections/_counter';
+@import 'sections/_counter_edit';
+
+a {
+  color: $yellow;
 }
 
-.jumbotron {
+.header {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  background: $graphite;
+  padding: 0.4rem;
+
+  &__title {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  &__title_link {
+    color: $yellow;
+    text-decoration: none;
+  }
 }

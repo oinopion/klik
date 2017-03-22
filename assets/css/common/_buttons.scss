@@ -1,0 +1,19 @@
+.btn {
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+
+  &--primary {
+    color: $dark-white;
+    background: $yolk;
+  }
+
+  &--round {
+    @include round-button(40px);
+
+    font-size: 0.8rem;
+    color: $yellow;
+    border: 2px $yellow solid;
+    box-shadow: none;
+  }
+}

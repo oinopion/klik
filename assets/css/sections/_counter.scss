@@ -1,0 +1,31 @@
+.counter {
+  text-align: center;
+
+  &__button {
+    @include round-button(120px);
+
+    font-size: 4.5rem;
+    color: $dark-white;
+    background-color: $yolk;
+
+    &:hover, &:focus { background-color: lighten($yolk, 5%); }
+    &:active { background-color: lighten($yolk, 10%); }
+  }
+
+  &__value {
+    display: inline-block;
+    font-size: 3rem;
+    font-family: monospace;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 3rem;
+
+    color: $grey;
+    background-color: $dark-white;
+  }
+
+  &__actions {
+    margin-top: 3rem;
+  }
+
+}

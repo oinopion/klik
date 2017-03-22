@@ -38,6 +38,7 @@ defmodule Klik.Web do
 
       import Klik.Web.Router.Helpers
       import Klik.Web.ErrorHelpers
+      import Klik.Web.ComponentHelpers
       import Klik.Web.Gettext
     end
   end
