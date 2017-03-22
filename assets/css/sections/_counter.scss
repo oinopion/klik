@@ -2,25 +2,14 @@
   text-align: center;
 
   &__button {
-    &--primary {
-      @include round-button(120px);
+    @include round-button(120px);
 
-      font-size: 4.5rem;
-      color: $dark-white;
-      background-color: $yolk;
+    font-size: 4.5rem;
+    color: $dark-white;
+    background-color: $yolk;
 
-      &:hover, &:focus { background-color: lighten($yolk, 5%); }
-      &:active { background-color: lighten($yolk, 10%); }
-    }
-
-    &--secondary {
-      @include round-button(40px);
-
-      font-size: 0.8rem;
-      color: $yellow;
-      border: 2px $yellow solid;
-      box-shadow: none;
-    }
+    &:hover, &:focus { background-color: lighten($yolk, 5%); }
+    &:active { background-color: lighten($yolk, 10%); }
   }
 
   &__value {

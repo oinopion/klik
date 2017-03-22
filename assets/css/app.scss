@@ -2,9 +2,12 @@
 @import '_variables';
 @import '_mixins';
 @import '_typography';
+@import '_forms';
+@import 'common/_buttons';
 
 @import 'sections/_home';
 @import 'sections/_counter';
+@import 'sections/_counter_edit';
 
 a {
   color: $yellow;

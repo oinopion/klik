@@ -1,6 +1,11 @@
-<h2>Edit Counter</h2>
+<section class="counter-edit">
+  <h2>Edit Counter</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: counter_path(@conn, :update, @counter) %>
+  <%= render "form.html",
+        changeset: @changeset,
+        action: counter_path(@conn, :update, @counter) %>
 
-<span><%= link "Back", to: counter_path(@conn, :index) %></span>
+  <div class="counter-edit__actions"><%= link "Back",
+              class: "btn btn--round",
+              to: counter_path(@conn, :show, @counter) %></div>
+</section>
