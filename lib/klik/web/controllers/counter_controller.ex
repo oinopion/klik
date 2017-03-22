@@ -3,11 +3,6 @@ defmodule Klik.Web.CounterController do
 
   alias Klik.Counters
 
-  def index(conn, _params) do
-    counters = Counters.list_counters()
-    render(conn, "index.html", counters: counters)
-  end
-
   def create(conn, _params) do
     case Counters.create_counter() do
       {:ok, counter} ->
