@@ -1,14 +1,14 @@
-<div class="jumbotron">
-  <h2><%= gettext "Ninja Clicker" %></h2>
-  <p class="lead">Possibly the best clicker app ever</p>
+<section class="home">
+  <div class="home__box">
+    <h2 class="home__title">Ninja Clicker</h2>
+    <p class="home__lead">Possibly the best clicker app ever</p>
 
-  <hr>
+    <hr class="home__break">
 
-  <p>
-    <%= form_for @conn, counter_path(@conn, :create), [as: :counter], fn _ -> %>
-      <div class="form-group">
-        <%= submit "Start clicking now!", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </p>
-</div>
+    <p>
+      <%= form_for @conn, counter_path(@conn, :create), [as: :counter], fn _ -> %>
+          <%= submit "Start clicking now!", class: "home__cta" %>
+      <% end %>
+    </p>
+  </div>
+</section>
