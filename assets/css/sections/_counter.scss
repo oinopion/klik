@@ -7,6 +7,7 @@
     font-size: 4.5rem;
     color: $dark-white;
     background-color: $yolk;
+    touch-action: manipulation;
 
     &:hover, &:focus { background-color: lighten($yolk, 5%); }
     &:active { background-color: lighten($yolk, 10%); }
