@@ -1,5 +1,8 @@
 use Mix.Config
 
+config :klik,
+  csp: "default-src 'self'; object-src 'none'"
+
 config :klik, Klik.Web.Endpoint,
   on_init: {Klik.Web.Endpoint, :load_from_system_env, []},
   url: [host: "ninja-clicker.com", port: 80],

@@ -13,5 +13,4 @@ defmodule Klik.Web.ConnHelpers do
     "<#{static_path(Klik.Web.Endpoint, asset_path)}>; rel=preload; as=#{role}"
   defp preload_header_fragment({asset_path, role, type}), do:
     "<#{static_path(Klik.Web.Endpoint, asset_path)}>; rel=preload; as=#{role}; type=#{type}"
-
 end
