@@ -1,7 +1,14 @@
 defmodule Klik.Web.PageController do
   use Klik.Web, :controller
 
+  @preloaded_resources [
+    {"/css/app.css", "style"},
+    {"/fonts/lato.woff2", "font", "fonts/woff2"}
+  ]
+
   def index(conn, _params) do
-    render conn, "index.html"
+    conn
+    |> put_preload_header(@preloaded_resources)
+    |> render("index.html")
   end
 end

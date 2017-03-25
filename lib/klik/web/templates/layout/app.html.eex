@@ -7,7 +7,6 @@
 
     <title>Ninja Clicker</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link rel="prefetch" href="<%= static_path(@conn, "/fonts/lato.woff2") %>">
   </head>
 
   <body>

@@ -21,6 +21,7 @@ defmodule Klik.Web do
       use Phoenix.Controller, namespace: Klik.Web
       import Plug.Conn
       import Klik.Web.Router.Helpers
+      import Klik.Web.ConnHelpers
       import Klik.Web.Gettext
     end
   end

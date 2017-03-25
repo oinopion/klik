@@ -11,11 +11,6 @@ defmodule Klik.Web.CounterControllerTest do
     counter
   end
 
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, counter_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing Counters"
-  end
-
   test "creates counter and redirects to show when data is valid", %{conn: conn} do
     conn = post conn, counter_path(conn, :create), counter: @create_attrs
 
