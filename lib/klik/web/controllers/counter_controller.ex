@@ -12,7 +12,7 @@ defmodule Klik.Web.CounterController do
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_flash(:error, "There was an error creating counter.")
-        render("index.html", changeset: changeset)
+        |> render("index.html", changeset: changeset)
     end
   end
 
