@@ -3,7 +3,7 @@ defmodule Klik.Web.PageController do
 
   @preloaded_resources [
     {"/css/app.css", "style"},
-    {"/fonts/lato.woff2", "font", "fonts/woff2"}
+    {"/fonts/lato.woff2", "font"}
   ]
 
   def index(conn, _params) do
