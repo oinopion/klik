@@ -8,7 +8,9 @@ use Mix.Config
 # General application configuration
 config :klik,
   ecto_repos: [Klik.Repo],
-  csp: "default-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'"
+  counter_broadcasters: [Klik.Web.CounterChannelBroadcaster],
+  csp: "default-src 'self'; object-src 'none'; " <>
+      "connect-src ws:; style-src 'self' 'unsafe-inline'"
 
 # Configures the endpoint
 config :klik, Klik.Web.Endpoint,

@@ -2,11 +2,12 @@ defmodule Klik.Counters do
   @moduledoc """
   The boundary for the Counters system.
   """
+  @broadcasters Application.get_env(:klik, :counter_broadcasters)
 
   import Ecto.{Query, Changeset}, warn: false
   alias Ecto.Multi
   alias Klik.Repo
-  alias Klik.Counters.{Counter,Increment}
+  alias Klik.Counters.{Counter, Increment}
 
   @doc """
   Returns the list of counters.
@@ -87,6 +88,7 @@ defmodule Klik.Counters do
     case result do
       # We know there's going to be only one counter
       {:ok, %{increment: increment, counters: {1, [counter]}}} ->
+        broadcast_increment(counter)
         {:ok, counter, increment}
       default ->
         default
@@ -122,5 +124,11 @@ defmodule Klik.Counters do
     %Increment{}
     |> cast(attrs, [:value])
     |> put_assoc(:counter, counter)
+  end
+
+  defp broadcast_increment(counter) do
+    Enum.each @broadcasters, fn broadcaster ->
+      broadcaster.counter_incremented(counter)
+    end
   end
 end
