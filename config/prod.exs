@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :klik,
-  csp: "default-src 'self'; object-src 'none'"
+  csp: "default-src 'self'; object-src 'none'; connect-src 'self' wss://ninja-clicker.com"
 
 config :klik, Klik.Web.Endpoint,
   on_init: {Klik.Web.Endpoint, :load_from_system_env, []},
