@@ -1,7 +1,7 @@
 defmodule Klik.Web.UserSocket do
   use Phoenix.Socket
 
-  channel "room:*", Klik.Web.CounterChannel
+  channel "counter:*", Klik.Web.CounterChannel
 
   transport :websocket, Phoenix.Transports.WebSocket
   transport :longpoll, Phoenix.Transports.LongPoll
