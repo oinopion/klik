@@ -9,7 +9,7 @@ defmodule Klik.Web.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :klik, gzip: Mix.env == :prod,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts icons images js favicon.ico robots.txt manifest.json)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
