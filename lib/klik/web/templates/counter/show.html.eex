@@ -5,7 +5,13 @@
   <span class="counter__value"><%= number_with_leading_zeros(@counter.value) %></span>
 
   <%= form_for @conn, counter_increment_path(@conn, :create, @counter), [as: :increment], fn _ -> %>
-    <%= submit "+", class: "counter__button" %>
+    <%= submit class: "counter__button" do %>
+      <svg class="counter__button_icon" viewbox="0 0 250 250">
+        <g fill-rule="evenodd" >
+          <path d="M0,125 a125,125 0 1,0 250,0 a125,125 0 1,0 -250,0 Z
+                   M110 55 h30 v55 h55 v30 h-55 v55 h-30 v-55 h-55 v-30 h55 v-55 Z"/>
+      </svg>
+    <% end %>
   <% end %>
 
   <div class="counter__actions">
