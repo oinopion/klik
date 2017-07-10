@@ -1,18 +1,33 @@
 import { Socket } from "phoenix"
 import { createSelector } from "./selector"
-import { CounterPage } from "./pages/counter"
+import { CounterPage } from "./counters/page"
+
+
+const PAGES = {
+  'counter-show': CounterPage
+}
+
+
+function routePage(app) {
+  const pageElem = app.selector.one('[data-page]')
+  if (!pageElem) {
+    return {}
+  }
+
+  const pageName = pageElem.dataset['page']
+  const pageClass = PAGES[pageName]
+  return new pageClass(app, pageElem)
+}
 
 
 function main() {
-  const selector = createSelector(document)
-
-  const counterPage = CounterPage.locate(selector)
-  if (counterPage) {
-    const socket = new Socket("/socket")
-    socket.connect()
-
-    counterPage.init(socket)
+  const app = {
+    selector: createSelector(document),
+    socket: new Socket("/socket")
   }
+
+  app.socket.connect()
+  app.currentPage = routePage(app)
 }
 
 
