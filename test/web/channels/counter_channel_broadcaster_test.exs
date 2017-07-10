@@ -9,12 +9,22 @@ defmodule Klik.Web.CounterChannelBroadcasterTest do
     counter
   end
 
-  test "counter_incremented broadcasts current value of counter" do
+  def fixture(:counter, :increment) do
     counter = fixture(:counter)
+    {:ok, counter, increment} = Counters.increment_counter(counter)
+    {counter, increment}
+  end
+
+  test "counter_incremented broadcasts current value of counter and the increment id" do
+    {counter, increment} = fixture(:counter, :increment)
     joined_socket(counter)
 
-    CounterChannelBroadcaster.counter_incremented(counter)
-    assert_broadcast "counter_incremented", %{"value" => 0}
+    payload = %{
+      "counter" => %{"value" => counter.value},
+      "increment" => %{"id" => increment.id}
+    }
+    CounterChannelBroadcaster.counter_incremented(counter, increment)
+    assert_broadcast "counter_incremented", ^payload
   end
 
   defp joined_socket(counter) do

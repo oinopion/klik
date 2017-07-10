@@ -1,5 +1,7 @@
 <section class="counter"
-    data-id="<%= @counter.id %>"
+    data-page="counter-show"
+    data-counter-id="<%= @counter.id %>"
+    data-counter-value="<%= @counter.value %>"
     data-channel-id="<%= channelId(@counter) %>">
   <h2 class="counter__name"><%= counter_name(@counter) %></h2>
   <span class="counter__value"><%= number_with_leading_zeros(@counter.value) %></span>

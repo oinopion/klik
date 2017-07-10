@@ -88,7 +88,7 @@ defmodule Klik.Counters do
     case result do
       # We know there's going to be only one counter
       {:ok, %{increment: increment, counters: {1, [counter]}}} ->
-        broadcast_increment(counter)
+        broadcast_increment(counter, increment)
         {:ok, counter, increment}
       default ->
         default
@@ -122,13 +122,14 @@ defmodule Klik.Counters do
 
   defp new_increment_changeset(counter, attrs) do
     %Increment{}
-    |> cast(attrs, [:value])
+    |> cast(attrs, [:id, :value])
     |> put_assoc(:counter, counter)
+    |> unique_constraint(:id, name: :counters_increments_pkey)
   end
 
-  defp broadcast_increment(counter) do
+  defp broadcast_increment(counter, increment) do
     Enum.each @broadcasters, fn broadcaster ->
-      broadcaster.counter_incremented(counter)
+      broadcaster.counter_incremented(counter, increment)
     end
   end
 end

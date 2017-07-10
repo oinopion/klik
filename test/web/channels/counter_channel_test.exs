@@ -10,13 +10,16 @@ defmodule Klik.Web.CounterChannelTest do
     counter
   end
 
-  test "join assigns counter_id" do
+  test "join assigns counter_id and returns current value" do
+    counter = fixture(:counter)
     socket = socket()
-    assert {:ok, socket} = CounterChannel.join("counter:foux-du-fa-fa", %{}, socket)
-    assert socket.assigns.counter_id == "foux-du-fa-fa"
+
+    assert {:ok, payload, socket} = CounterChannel.join("counter:#{counter.id}", %{}, socket)
+    assert socket.assigns.counter_id == counter.id
+    assert %{"value" => counter.value} == payload
   end
 
-  test "`increment_counter` increments counter and returns current value" do
+  test "`increment_counter` increments counter and returns current value and increment" do
     counter = fixture(:counter)
     socket = joined_socket(counter)
 
